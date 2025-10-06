@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bhavani Family — Vaastu Invitation</title>
+  <style>
+    :root { --gold:#d6a14b; --accent:#d4af37; --bg:#030617; }
+    html, body {
+      height:100%; margin:0;
+      background:var(--bg); color:#fff;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans', sans-serif;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .card {
+      width:95%; max-width:960px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:16px;
+      box-shadow:0 8px 40px rgba(0,0,0,0.4);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+    }
+    @media(max-width:800px){ .card{grid-template-columns:1fr;} }
+
+    /* Left: video + overlay */
+    .left { position:relative; background:#000; min-height:400px; }
+    video, img { width:100%; height:100%; object-fit:cover; display:none; }
+    .overlay {
+      position:absolute; bottom:0; left:0; right:0;
+      background:linear-gradient(180deg,transparent,rgba(0,0,0,0.7));
+      padding:20px; color:#fff;
+    }
+    .overlay h1 { font-size:26px; margin:0; color:var(--accent); }
+    .overlay p { font-size:14px; margin-top:6px; }
+
+    /* Right content */
+    .right {
+      padding:26px; display:flex; flex-direction:column;
+      justify-content:space-between;
+      background:linear-gradient(180deg,#fff,#fffaf2);
+      color:#222;
+    }
+    .guestHeader {
+      font-size:22px; font-weight:700;
+      color:var(--gold);
+      text-align:center;
+    }
+    .venue {
+      text-align:center; margin-top:20px;
+    }
+    .venue h2 { color:var(--gold); margin-bottom:6px; }
+    .mapsBtn {
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:8px;
+      background:rgba(107,59,31,0.05);
+      border:1px solid rgba(107,59,31,0.15);
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
+    .footer {
+      grid-column:1 / -1;
+      text-align:center;
+      font-size:13px;
+      padding:12px;
+      color:var(--gold);
+      background:rgba(255,255,255,0.03);
+    }
+     .mapsBtn {
+    display: inline-block;
+    background-color: #39e673; /* 🔴 background color */
+    color: rgb(0, 0, 0); /* ⚪ text color */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .mapsBtn:hover {
+    background-color: #b51726; /* hover time dark red */
+    transform: scale(1.05);
+  }
+
+  .right {
+    width: 450px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #fff8e7, #fbe8d3, #f5d0a9); /* praline warm gradient */
+    box-shadow: 0 0 25px rgba(255, 204, 153, 0.5);
+    background-image: radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 40%),
+                      radial-gradient(circle at bottom right, rgba(255,204,153,0.3), transparent 40%);
+    backdrop-filter: blur(5px);
+    transition: all 0.5s ease;
+  }
+
+  .right:hover {
+    box-shadow: 0 0 35px rgba(255, 174, 94, 0.6);
+    transform: scale(1.02);
+  }
+
+  .mapsBtn {
+    display: inline-block;
+    background-color: #d4af37; /* golden praline color */
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(212, 175, 55, 0.4);
+  }
+
+  .mapsBtn:hover {
+    background-color: #b7962f;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6);
+    transform: scale(1.05);
+  }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="left">
+      <video id="video1" playsinline muted>
+        <source src="assets/video2.mp4" type="video/mp4">
+      </video>
+
+      <video id="video2" playsinline autoplay >
+        <source src="assets/video1.mp4" type="video/mp4">
+      </video>
+
+      <div class="overlay">
+        <h1>Shubh Vaastu Poojan</h1>
+        <p> Our Family warmly invite you to our new home</p>
+        <p>Date: <strong>26 Oct 2025</strong> • Time: <strong>11:00 AM</strong></p>
+      </div>
+    </div>
+
+   <div class="right">
+  <div>
+    <div class="guestHeader" id="guestName">Welcome Guest</div>
+
+    <div class="venue" id="venue">
+      <h2>Bhavani Villa (Amreli)</h2>
+
+      <a id="mapsLink" class="mapsBtn" target="_blank" rel="noopener">Open in Google Maps</a>
+    </div>
+  </div>
+
+  <div style="margin-top:30px; text-align:center;">
+    <p style="color:#444;font-size:14px;">May this new home be filled with peace, prosperity & laughter 🪔</p>
+  </div>
+</div>
+
+    <div class="footer">
+      — Bhavani Family welcomes you with love and warmth —
+    </div>
+  </div>
+
+  <script>
+    // Read guest name from URL ?name=
+    const params = new URLSearchParams(window.location.search);
+    const rawName = params.get('name') || 'Guest';
+    const name = decodeURIComponent(rawName.replace(/\+/g, ' '));
+    document.getElementById('guestName').innerText = `Dear ${name}`;
+
+    // Map link
+    const lat = 21.59275, lng = 71.10855555555555;
+    document.getElementById('mapsLink').href = `https://www.google.com/maps?q=${lat},${lng}`;
+
+    const v1 = document.getElementById('video1');
+    const v2 = document.getElementById('video2');
+    const venue = document.getElementById('venue');
+
+    // Start first video
+    v1.style.display = 'block';
+    v1.play().catch(()=>v1.controls=true);
+
+    // After first video ends, show second video
+    v1.addEventListener('ended', ()=>{
+      v1.style.display = 'none';
+      v2.style.display = 'block';
+      v2.play().catch(()=>v2.controls=true);
+    });
+
+    // After second video ends, show venue
+    v2.addEventListener('ended', ()=>{
+      v2.style.display = 'none';
+      venue.style.display = 'block';
+    });
+    
+    // Initially hide venue
+  </script>
+</body>
+</html>
